@@ -1,7 +1,6 @@
 import { nanoid } from 'nanoid';
-import { useDispatch } from 'react-redux'; // Usunięto nieużywaną importację useSelector
+import { useDispatch } from 'react-redux';
 import { addContact } from '../../redux/contactsSlice';
-// Usunięto nieużywaną importację selectora getContacts
 import css from './ContactForm.module.css';
 
 export const ContactForm = () => {
