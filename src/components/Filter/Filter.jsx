@@ -1,26 +1,27 @@
-import PropTypes from 'prop-types';
-import React from 'react';
+import { useDispatch } from 'react-redux';
+import { setFilter } from '../../redux/filterSlice';
 import css from './Filter.module.css';
 
-export class Filter extends React.Component {
-  render() {
-    const { filter, addFilter } = this.props;
-    return (
-      <div>
-        <input
-          type="text"
-          name="filter"
-          className={css.input_filter}
-          value={filter}
-          onChange={addFilter}
-          placeholder="Enter name"
-        />
-      </div>
-    );
-  }
-}
+const Filter = () => {
+  const dispatch = useDispatch();
 
-Filter.propTypes = {
-  filter: PropTypes.string.isRequired,
-  addFilter: PropTypes.func.isRequired,
+  const handleFilter = evt => {
+    const value = evt.target.value.toLowerCase();
+    dispatch(setFilter(value));
+  };
+
+  return (
+    <div className={css.filter_container}>
+      <h1 className={css.filter_header}>Search contact</h1>
+      <input
+        type="text"
+        name="filter"
+        onChange={handleFilter}
+        placeholder="Enter name"
+        className={css.input_filter}
+      />
+    </div>
+  );
 };
+
+export default Filter;
