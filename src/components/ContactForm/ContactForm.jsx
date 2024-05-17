@@ -1,11 +1,10 @@
 import { nanoid } from 'nanoid';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux'; // Usunięto nieużywaną importację useSelector
 import { addContact } from '../../redux/contactsSlice';
-import { getContacts } from '../../redux/selectors';
+// Usunięto nieużywaną importację selectora getContacts
 import css from './ContactForm.module.css';
 
 export const ContactForm = () => {
-  const contacts = useSelector(getContacts);
   const dispatch = useDispatch();
 
   const formSubmit = evt => {
@@ -13,15 +12,15 @@ export const ContactForm = () => {
 
     const name = evt.target.name.value;
     const number = evt.target.number.value;
-    const id = nanoid(); // Usunięto redundancję nadawania ID
+    const id = nanoid();
 
     const newContact = {
-      id: id, // Nadanie unikalnego ID
+      id: id,
       name: name,
       number: number,
     };
 
-    dispatch(addContact(newContact)); // Usunięto dodatkową warstwę obiektu
+    dispatch(addContact(newContact));
     evt.target.reset();
   };
 
